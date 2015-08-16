@@ -1,11 +1,23 @@
 <html>
-  <head></head>
+  <head>
+    <style>
+      body {background: <%=
+        if status == :correct
+          "green"
+        elsif status == :close
+          "pink"
+        else
+          "red"
+        end
+          %>;}
+    </style>
+  </head>
   <body>
     <p>
       <%= message %>
     </p>
     <p>
-      <%= "The SECRET NUMBER is #{number}" if message[-6..-1] == "right!" %>
+      <%= "The SECRET NUMBER is #{number}" if status == :correct %>
     </p>
     <p>
       <form>
