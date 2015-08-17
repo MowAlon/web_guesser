@@ -21,7 +21,7 @@ end
 
 def reset_message(condition)
   if condition == :win
-    "The SECRET NUMBER is #{settings.number}. Try another if you'd like."
+    "The SECRET NUMBER is #{settings.number}"
   else
     "You lose. Try again with a new secret number!"
   end
@@ -33,7 +33,7 @@ def reset
 end
 
 get '/' do
-  guess = params['guess']
+  guess, cheat = params['guess'], params['cheat']
   if !guess.nil?
     message = check_guess(guess)
     @@count -= 1
@@ -44,6 +44,7 @@ get '/' do
     end
     reset if extra_message
   end
+  extra_message = reset_message(:win) if cheat == 'true'
 
   erb :index, :locals => {:number => settings.number, :message => message, :status => settings.status, :count => @@count, :extra_message => extra_message, :guess => guess}
 end
