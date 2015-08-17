@@ -6,8 +6,10 @@
           "green"
         elsif status == :close
           "pink"
-        else
+        elsif status == :way_wrong
           "red"
+        else
+          "white"
         end
           %>;}
     </style>
@@ -17,7 +19,10 @@
       <%= message %>
     </p>
     <p>
-      <%= "The SECRET NUMBER is #{number}" if status == :correct %>
+      <%= "Guesses remaining: #{count}" %>
+    </p>
+    <p>
+      <%= extra_message %>
     </p>
     <p>
       <form>
