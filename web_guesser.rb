@@ -9,7 +9,7 @@ def check_guess(guess)
   guess = guess.to_i
   message = if guess == settings.number
     settings.status = :correct
-     "Whoa, dude... good guess. You got it right!"
+     "Whoa, dude... good guess. You got it right! Try another if you'd like."
   elsif guess.between?(settings.number - 5, settings.number + 5)
     settings.status = :close
     guess < settings.number ? "Too low!" : "Too high!"
@@ -46,5 +46,5 @@ get '/' do
   end
   extra_message = reset_message(:win) if cheat == 'true'
 
-  erb :index, :locals => {:number => settings.number, :message => message, :status => settings.status, :count => @@count, :extra_message => extra_message, :guess => guess}
+  erb :index, :locals => {:number => settings.number, :message => message, :status => settings.status, :count => @@count, :extra_message => extra_message}
 end
